@@ -3,88 +3,35 @@
 # $2 = new HEAD
 # $3 = 1 if branch checkout, 0 if file checkout
 
-# IS_BRANCH_CHECKOUT=$3
+IS_BRANCH_CHECKOUT=$3
 
-# if [ "$IS_BRANCH_CHECKOUT" != "1" ]; then
-#   exit 0
-# fi
-
-# echo "🔄 Branch changed, syncing dependencies..."
-
-# if [ -d "node_modules" ]; then
-#   echo "🗑 Removing node_modules"
-#   rm -rf node_modules
-# fi
-
-# if [ -d "dist" ]; then
-#   echo "🗑 Removing dist"
-#   rm -rf dist
-# fi
-
-# # if [ -f "package-lock.json" ]; then
-# #   echo "🗑 Removing package-lock.json"
-# #   rm -f package-lock.json
-# # fi
-
-# echo "🧹 Cleaning npm cache"
-# npm cache clean --force
-
-# # npx ts-node src/common/cli/install-deps.ts
-
-# echo "📦 Installing dependencies"
-# npm install
-
-# echo "✅ Dependencies installed successfully"
-
-
-# $3 = 1 jika checkout branch, 0 jika checkout file
-if [ "$3" != "1" ]; then
+if [ "$IS_BRANCH_CHECKOUT" != "1" ]; then
   exit 0
 fi
 
-# Cek apakah TTY tersedia
-if [ ! -t 0 ]; then
-  echo "ℹ️ Non-interactive checkout detected. Skipping dependency prompt."
-  exit 0
+echo "🔄 Branch changed, syncing dependencies..."
+
+if [ -d "node_modules" ]; then
+  echo "🗑 Removing node_modules"
+  rm -rf node_modules
 fi
 
-echo ""
-echo "🔀 Branch checkout detected."
+if [ -d "dist" ]; then
+  echo "🗑 Removing dist"
+  rm -rf dist
+fi
 
-printf "🧹 Clean node_modules & install dependencies? (y/N): "
-read answer < /dev/tty
+if [ -f "package-lock.json" ]; then
+  echo "🗑 Removing package-lock.json"
+  rm -f package-lock.json
+fi
 
-case "$answer" in
-  y|Y)
+echo "🧹 Cleaning npm cache"
+npm cache clean --force
 
-    echo ""
-    echo "🗑 Removing node_modules..."
-    rm -rf node_modules
+# npx ts-node src/common/cli/install-deps.ts
 
-    # if [ -d "node_modules" ]; then
-    #   echo ""
-    #   echo "🗑 Removing node_modules..."
-    #   rm -rf node_modules
-    # fi
+echo "📦 Installing dependencies"
+npm install
 
-    # if [ -d "package-lock.json" ]; then
-    #   echo ""
-    #   echo "🗑 Removing package-lock.json..."
-    #   rm -rf kage-lock.json
-    # fi
-
-    echo "🧹 Cleaning npm cache..."
-    npm cache clean --force
-
-    echo ""
-    echo "📦 Installing dependencies..."
-    npm install
-
-    echo ""
-    echo "✅ Dependencies installed successfully."
-    ;;
-  *)
-    echo ""
-    echo "⏭ Skipped dependency installation."
-    ;;
-esac
+echo "✅ Dependencies installed successfully"
