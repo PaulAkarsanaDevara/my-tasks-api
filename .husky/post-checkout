@@ -27,7 +27,7 @@ fi
 # fi
 
 echo "🧹 Cleaning npm cache"
-npm cache clean
+npm cache clean --force
 
 # npx ts-node src/common/cli/install-deps.ts
 
