@@ -16,13 +16,18 @@ if [ -d "node_modules" ]; then
   rm -rf node_modules
 fi
 
+if [ -d "dist" ]; then
+  echo "🗑 Removing dist"
+  rm -rf dist
+fi
+
 # if [ -f "package-lock.json" ]; then
 #   echo "🗑 Removing package-lock.json"
 #   rm -f package-lock.json
 # fi
 
 echo "🧹 Cleaning npm cache"
-npm cache clean --force
+npm cache clean
 
 # npx ts-node src/common/cli/install-deps.ts
 
