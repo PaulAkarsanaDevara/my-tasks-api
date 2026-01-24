@@ -11,7 +11,8 @@
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prepare": "husky"
+    "prepare": "husky",
+    "modules:list": "ts-node src/common/cli/list-modules.ts"
   },
   "lint-staged": {
     "*.{ts,js,json}": [
