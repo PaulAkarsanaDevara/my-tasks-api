@@ -11,7 +11,7 @@ export default [
   ...tseslint.configs.recommended,
 
   {
-    files: ['**/*.ts', '**/*.tsx'],
+    files: ['**/*.ts', '**/*.tsx', '*.config.js', 'commitlint.config.js'],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
