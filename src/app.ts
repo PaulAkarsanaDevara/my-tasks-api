@@ -5,6 +5,7 @@ import compression from 'compression';
 import { errorHandler } from './middlewares/errorHandler';
 import { moduleRegistry } from './containers/module-registry';
 import authRoutes from './modules/auth/auth.routes';
+import taskRoutes from './modules/tasks/task.routes';
 
 export const app = express();
 
@@ -18,5 +19,6 @@ app.get('/_debug/modules', (_req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/tasks', taskRoutes);
 
 app.use(errorHandler);

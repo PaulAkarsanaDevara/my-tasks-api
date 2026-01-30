@@ -5,4 +5,8 @@ export const TYPES = {
 
   AuditService: Symbol.for('AuditService'),
   AuditRepository: Symbol.for('AuditRepository'),
+
+  TaskController: Symbol.for('TaskController'),
+  TaskService: Symbol.for('TaskService'),
+  TaskRepository: Symbol.for('TaskRepository'),
 };
